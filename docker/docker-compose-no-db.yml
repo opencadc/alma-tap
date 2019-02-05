@@ -9,8 +9,8 @@ services:
     volumes:
       - './proxy/default.conf:/etc/nginx/conf.d/default.conf'
     depends_on: 
-      - 'tap_obscore'
-  tap_obscore:
+      - 'obscore'
+  obscore:
     image: opencadc/alma-tap:1.0.0
     #build: ./
     ports:

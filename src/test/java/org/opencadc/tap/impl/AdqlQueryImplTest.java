@@ -93,7 +93,6 @@ public class AdqlQueryImplTest {
 
     static {
         Log4jInit.setLevel("ca.nrc.cadc.sample", Level.INFO);
-
     }
 
     private final Job job = new Job() {

@@ -19,7 +19,6 @@
             <param-value>
                 ca.nrc.cadc.tap
                 org.opencadc.tap
-                ca.nrc.cadc.log
                 ca.nrc.cadc.rest
                 ca.nrc.cadc.uws
             </param-value>
