@@ -74,13 +74,12 @@ import net.sf.jsqlparser.util.deparser.SelectDeParser;
 import ca.nrc.cadc.tap.AdqlQuery;
 import ca.nrc.cadc.tap.expression.OracleExpressionDeParser;
 import ca.nrc.cadc.tap.parser.converter.OracleCeilingConverter;
+import ca.nrc.cadc.tap.parser.converter.OracleRegionConverter;
 import ca.nrc.cadc.tap.parser.converter.OracleSubstringConverter;
 import ca.nrc.cadc.tap.parser.converter.OracleTopConverter;
 import ca.nrc.cadc.tap.parser.converter.TableNameConverter;
 import ca.nrc.cadc.tap.parser.converter.TableNameReferenceConverter;
 import ca.nrc.cadc.tap.parser.navigator.ExpressionNavigator;
-import ca.nrc.cadc.tap.parser.navigator.FromItemNavigator;
-import ca.nrc.cadc.tap.parser.navigator.ReferenceNavigator;
 import ca.nrc.cadc.tap.parser.navigator.SelectNavigator;
 
 
@@ -101,25 +100,24 @@ public class AdqlQueryImpl extends AdqlQuery {
     protected void init() {
         super.init();
 
-        // For Oracle, the TOP keyword is replaced with a WHERE ROWNUM <= count clause.
-        navigatorList.add(new OracleTopConverter(new ExpressionNavigator(), new ReferenceNavigator(),
-                                                 new FromItemNavigator()));
-
-        // For Oracle, the CEILING function is actually CEIL.
-        navigatorList.add(new OracleCeilingConverter(new ExpressionNavigator(), new ReferenceNavigator(),
-                                                     new FromItemNavigator()));
-
-        navigatorList.add(new OracleSubstringConverter(new ExpressionNavigator(), new ReferenceNavigator(),
-                                                       new FromItemNavigator()));
-
         // TAP-1.1 tap_schema version is encoded in table names
-        TableNameConverter tnc = new TableNameConverter(true);
+        final TableNameConverter tnc = new TableNameConverter(true);
         tnc.put("tap_schema.schemas", "tap_schema.schemas11");
         tnc.put("tap_schema.tables", "tap_schema.tables11");
         tnc.put("tap_schema.columns", "tap_schema.columns11");
         tnc.put("tap_schema.keys", "tap_schema.keys11");
         tnc.put("tap_schema.key_columns", "tap_schema.key_columns11");
-        TableNameReferenceConverter tnrc = new TableNameReferenceConverter(tnc.map);
+
+        final TableNameReferenceConverter tnrc = new TableNameReferenceConverter(tnc.map);
+
+        // For Oracle, the TOP keyword is replaced with a WHERE ROWNUM <= count clause.
+        navigatorList.add(new OracleTopConverter(new ExpressionNavigator(), tnrc, tnc));
+
+        // For Oracle, the CEILING function is actually CEIL.
+        navigatorList.add(new OracleCeilingConverter(new ExpressionNavigator(), tnrc, tnc));
+
+        navigatorList.add(new OracleSubstringConverter(new ExpressionNavigator(), tnrc, tnc));
+        navigatorList.add(new OracleRegionConverter(new ExpressionNavigator(), tnrc, tnc));
         navigatorList.add(new SelectNavigator(new ExpressionNavigator(), tnrc, tnc));
 
         // TODO: add more custom query visitors here
@@ -130,9 +128,9 @@ public class AdqlQueryImpl extends AdqlQuery {
      * is not sufficient. For example, postgresql+pg_sphere requires the PgsphereDeParser to
      * support spoint and spoly. the default is to return a new BaseExpressionDeParser.
      *
-     * @param dep
-     * @param sb
-     * @return expression deparser impl
+     * @param dep The SelectDeParser used.
+     * @param sb  StringBuffer to write to.
+     * @return ExpressionDeParser implementation.  Never null.
      */
     @Override
     protected ExpressionDeParser getExpressionDeparser(SelectDeParser dep, StringBuffer sb) {
