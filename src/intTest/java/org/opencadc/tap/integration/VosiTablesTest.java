@@ -66,7 +66,7 @@ public class VosiTablesTest {
     public void testValidateTableDoc() throws Exception {
         try {
             TableReader tr = new TableReader(true);
-            String s = tablesURL.toExternalForm() + "/TAP_SCHEMA.schemas";
+            String s = tablesURL.toExternalForm() + "/ALMA.ASA_TABLES";
             log.info("testValidateTableDoc: " + s);
 
             URL url = new URL(s);
