@@ -11,7 +11,7 @@ function dbIsReady() {
   docker-compose logs tapdb | grep "Completed: ALTER DATABASE OPEN"
 }
 function tomcatIsReady() {
-  docker-compose logs tap_obscore | grep "org.apache.catalina.startup.Catalina.start Server startup in"
+  docker-compose logs obscore | grep "org.apache.catalina.startup.Catalina.start Server startup in"
 }
 
 function waitUntilServiceIsReady() {
