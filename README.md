@@ -1,4 +1,4 @@
-# ALMA TAP
+# ALMA TAP (1.1.0)
 
 [IVOA TAP](http://ivoa.net/Documents/TAP/) service for the [ALMA Science Archive](http://almascience.nrao.edu/).
 
