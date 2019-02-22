@@ -29,7 +29,7 @@ repositories {
 
 group = 'org.opencadc'
 sourceCompatibility = 1.7
-version = '1000'
+version = '1001'
 
 war {
     archiveName = 'tap##' + project.version + '.war'
