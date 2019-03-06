@@ -73,10 +73,11 @@ import net.sf.jsqlparser.util.deparser.ExpressionDeParser;
 import net.sf.jsqlparser.util.deparser.SelectDeParser;
 import ca.nrc.cadc.tap.AdqlQuery;
 import ca.nrc.cadc.tap.expression.OracleExpressionDeParser;
+import ca.nrc.cadc.tap.parser.OracleQuerySelectDeParser;
+import ca.nrc.cadc.tap.parser.QuerySelectDeParser;
 import ca.nrc.cadc.tap.parser.converter.OracleCeilingConverter;
 import ca.nrc.cadc.tap.parser.converter.OracleRegionConverter;
 import ca.nrc.cadc.tap.parser.converter.OracleSubstringConverter;
-import ca.nrc.cadc.tap.parser.converter.OracleTopConverter;
 import ca.nrc.cadc.tap.parser.converter.TableNameConverter;
 import ca.nrc.cadc.tap.parser.converter.TableNameReferenceConverter;
 import ca.nrc.cadc.tap.parser.navigator.ExpressionNavigator;
@@ -110,9 +111,6 @@ public class AdqlQueryImpl extends AdqlQuery {
 
         final TableNameReferenceConverter tnrc = new TableNameReferenceConverter(tnc.map);
 
-        // For Oracle, the TOP keyword is replaced with a WHERE ROWNUM <= count clause.
-        navigatorList.add(new OracleTopConverter(new ExpressionNavigator(), tnrc, tnc));
-
         // For Oracle, the CEILING function is actually CEIL.
         navigatorList.add(new OracleCeilingConverter(new ExpressionNavigator(), tnrc, tnc));
 
@@ -135,5 +133,15 @@ public class AdqlQueryImpl extends AdqlQuery {
     @Override
     protected ExpressionDeParser getExpressionDeparser(SelectDeParser dep, StringBuffer sb) {
         return new OracleExpressionDeParser(dep, sb);
+    }
+
+    /**
+     * Provide implementation of select deparser if the default (SelectDeParser) is not sufficient.
+     *
+     * @return
+     */
+    @Override
+    protected QuerySelectDeParser getSelectDeParser() {
+        return new OracleQuerySelectDeParser();
     }
 }
