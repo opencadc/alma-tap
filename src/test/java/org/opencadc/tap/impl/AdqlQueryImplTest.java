@@ -80,6 +80,7 @@ import ca.nrc.cadc.uws.Parameter;
 import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
 
+import org.junit.Ignore;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
@@ -137,6 +138,7 @@ public class AdqlQueryImplTest {
 
     // this test requires that AdqlQueryImpl converts TOP to LIMIT
     @Test
+    @Ignore("Top is handled separately.")
     public void testTopConverter() {
         try {
             job.getParameterList().add(new Parameter("QUERY", "select top 6 * from test.foo"));
