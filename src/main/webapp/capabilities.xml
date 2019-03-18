@@ -7,36 +7,36 @@
 
     <capability standardID="ivo://ivoa.net/std/VOSI#capabilities">
         <interface xsi:type="vs:ParamHTTP" role="std">
-            <accessURL use="full">http://replace.me.com/tap/capabilities</accessURL>
+            <accessURL use="full">http://replace.me.com/@app_name@/capabilities</accessURL>
         </interface>
     </capability>
 
     <capability standardID="ivo://ivoa.net/std/VOSI#availability">
         <interface xsi:type="vs:ParamHTTP" role="std">
-            <accessURL use="full">http://replace.me.com/tap/availability</accessURL>
+            <accessURL use="full">http://replace.me.com/@app_name@/availability</accessURL>
         </interface>
     </capability>
 
     <capability standardID="vos://cadc.nrc.ca~vospace/CADC/std/Logging#control-1.0">
         <interface xsi:type="vs:ParamHTTP" role="std" version="1.0">
-            <accessURL use="full">http://replace.me.com/tap/logControl</accessURL>
+            <accessURL use="full">http://replace.me.com/@app_name@/logControl</accessURL>
         </interface>
     </capability>
 
     <capability standardID="ivo://ivoa.net/std/VOSI#tables-1.1">
         <interface xsi:type="vs:ParamHTTP" role="std" version="1.1">
-            <accessURL use="base">http://replace.me.com/tap/tables</accessURL>
+            <accessURL use="base">http://replace.me.com/@app_name@/tables</accessURL>
         </interface>
         <interface xsi:type="vs:ParamHTTP" role="std" version="1.1">
-            <accessURL use="base">http://replace.me.com/tap/auth-tables</accessURL>
+            <accessURL use="base">http://replace.me.com/@app_name@/auth-tables</accessURL>
             <securityMethod standardID="ivo://ivoa.net/sso#BasicAA"/>
         </interface>
         <interface xsi:type="vs:ParamHTTP" role="std" version="1.1">
-            <accessURL use="base">http://replace.me.com/tap/tables</accessURL>
+            <accessURL use="base">http://replace.me.com/@app_name@/tables</accessURL>
             <securityMethod standardID="ivo://ivoa.net/sso#cookie"/>
         </interface>
         <interface xsi:type="vs:ParamHTTP" role="std" version="1.1">
-            <accessURL use="base">https://replace.me.com/tap/tables</accessURL>
+            <accessURL use="base">https://replace.me.com/@app_name@/tables</accessURL>
             <securityMethod standardID="ivo://ivoa.net/sso#tls-with-certificate"/>
         </interface>
     </capability>
@@ -46,38 +46,38 @@
                 xmlns:tr="http://www.ivoa.net/xml/TAPRegExt/v1.0" xsi:type="tr:TableAccess">
         <!-- anonymous base URL to support TAP-1.0 clients -->
         <interface xsi:type="vs:ParamHTTP" role="std" version="1.1">
-            <accessURL use="base">http://replace.me.com/tap</accessURL>
+            <accessURL use="base">http://replace.me.com/@app_name@</accessURL>
         </interface>
 
         <interface xsi:type="uws:Async" role="std" version="1.1">
-            <accessURL use="base">http://example.net/tap/async</accessURL>
+            <accessURL use="base">http://example.net/@app_name@/async</accessURL>
         </interface>
         <interface xsi:type="uws:Async" role="std" version="1.1">
-            <accessURL use="base">http://example.net/tap/auth-async</accessURL>
+            <accessURL use="base">http://example.net/@app_name@/auth-async</accessURL>
             <securityMethod standardID="ivo://ivoa.net/sso#BasicAA"/>
         </interface>
         <interface xsi:type="uws:Async" role="std" version="1.1">
-            <accessURL use="base">https://example.net/tap/async</accessURL>
+            <accessURL use="base">https://example.net/@app_name@/async</accessURL>
             <securityMethod standardID="ivo://ivoa.net/sso#tls-with-certificate"/>
         </interface>
         <interface xsi:type="uws:Async" role="std" version="1.1">
-            <accessURL use="base">http://example.net/tap/async</accessURL>
+            <accessURL use="base">http://example.net/@app_name@/async</accessURL>
             <securityMethod standardID="ivo://ivoa.net/sso#cookie"/>
         </interface>
 
         <interface xsi:type="uws:Sync" role="std" version="1.1">
-            <accessURL use="base">http://example.net/tap/sync</accessURL>
+            <accessURL use="base">http://example.net/@app_name@/sync</accessURL>
         </interface>
         <interface xsi:type="uws:Sync" role="std" version="1.1">
-            <accessURL use="base">http://example.net/tap/auth-sync</accessURL>
+            <accessURL use="base">http://example.net/@app_name@/auth-sync</accessURL>
             <securityMethod standardID="ivo://ivoa.net/sso#BasicAA"/>
         </interface>
         <interface xsi:type="uws:Sync" role="std" version="1.1">
-            <accessURL use="base">https://example.net/tap/sync</accessURL>
+            <accessURL use="base">https://example.net/@app_name@/sync</accessURL>
             <securityMethod standardID="ivo://ivoa.net/sso#tls-with-certificate"/>
         </interface>
         <interface xsi:type="uws:Sync" role="std" version="1.1">
-            <accessURL use="base">http://example.net/tap/sync</accessURL>
+            <accessURL use="base">http://example.net/@app_name@/sync</accessURL>
             <securityMethod standardID="ivo://ivoa.net/sso#cookie"/>
         </interface>
 
