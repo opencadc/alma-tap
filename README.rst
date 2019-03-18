@@ -1,4 +1,4 @@
-ALMA TAP (1.1.2)
+ALMA TAP (1.1.3)
 ================
 
 `IVOA TAP`_ service for the `ALMA Science Archive`_.
@@ -14,6 +14,13 @@ Building the service creates a WAR artifact. From the root fo the
 to create the ``build/libs/tap##%VERSION%.war`` file, where the
 ``%VERSION%`` will be replaced with the actual version number declared
 in the `build.gradle`_ file.
+
+Alternatively, there is an ``alma_tap_app_name`` parameter that will replace the name of the output file.
+
+``gradle -info -Palma_tap_app_name=my_alma_tap clean build``
+
+will create the ``build/libs/my_alma_tap##%VERSION%.war`` file.  This can also be set in a local ``gradle.properties``,
+or in you ``~/.gradle/gradle.properties`` file.
 
 Deployment
 ----------
