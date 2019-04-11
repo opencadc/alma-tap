@@ -93,6 +93,7 @@ import ca.nrc.cadc.tap.parser.navigator.SelectNavigator;
  * @author pdowler
  */
 public class AdqlQueryImpl extends AdqlQuery {
+
     public AdqlQueryImpl() {
         super();
     }
@@ -103,6 +104,7 @@ public class AdqlQueryImpl extends AdqlQuery {
 
         // TAP-1.1 tap_schema version is encoded in table names
         final TableNameConverter tnc = new TableNameConverter(true);
+        tnc.put("ivoa.obscore", "alma.obscore");
         tnc.put("tap_schema.schemas", "tap_schema.schemas11");
         tnc.put("tap_schema.tables", "tap_schema.tables11");
         tnc.put("tap_schema.columns", "tap_schema.columns11");
@@ -138,7 +140,7 @@ public class AdqlQueryImpl extends AdqlQuery {
     /**
      * Provide implementation of select deparser if the default (SelectDeParser) is not sufficient.
      *
-     * @return
+     * @return  QuerySelectDeParser
      */
     @Override
     protected QuerySelectDeParser getSelectDeParser() {

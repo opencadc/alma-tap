@@ -1,1 +1,2 @@
 docker/*.war
+docker/config/alma-tap.properties
