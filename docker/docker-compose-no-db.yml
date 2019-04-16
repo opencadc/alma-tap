@@ -14,13 +14,14 @@ services:
   obscore:
     image: opencadc/alma-tap:1.1.4
     ports:
+      - "8080:8080"
       - "5555:5555"
     networks:
       - "tap_obscore"
     env_file:
       - "./config/alma-tap.properties"
-#    volumes:
-#      - "./tap.war:/usr/local/tomcat/webapps/tap.war"
+    # volumes:
+    #   - "./tap.war:/usr/local/tomcat/webapps/tap.war"
 
 networks:
   tap_obscore:
