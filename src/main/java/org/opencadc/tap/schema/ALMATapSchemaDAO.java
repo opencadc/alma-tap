@@ -72,9 +72,12 @@ package org.opencadc.tap.schema;
 import ca.nrc.cadc.tap.schema.FunctionDesc;
 import ca.nrc.cadc.tap.schema.TapDataType;
 import ca.nrc.cadc.tap.schema.TapSchemaDAO;
+
 import java.util.List;
 
+
 public class ALMATapSchemaDAO extends TapSchemaDAO {
+
     /**
      * Get white-list of supported functions. TAP implementors that want to allow
      * additional functions to be used in queries to be used should override this
@@ -96,6 +99,10 @@ public class ALMATapSchemaDAO extends TapSchemaDAO {
         functionDescs.add(new FunctionDesc("TO_DATE", TapDataType.TIMESTAMP));
         functionDescs.add(new FunctionDesc("COALESCE", TapDataType.FUNCTION_ARG));
         functionDescs.add(new FunctionDesc("CONCAT", TapDataType.CHAR));
+
+        // Geometric functions.
+        functionDescs.add(new FunctionDesc("RANGE_S2D",
+                                           new TapDataType("double", "4", "range")));
 
         return functionDescs;
     }

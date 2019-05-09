@@ -115,7 +115,6 @@ public class AdqlQueryImpl extends AdqlQuery {
 
         // For Oracle, the CEILING function is actually CEIL.
         navigatorList.add(new OracleCeilingConverter(new ExpressionNavigator(), tnrc, tnc));
-
         navigatorList.add(new OracleSubstringConverter(new ExpressionNavigator(), tnrc, tnc));
         navigatorList.add(new OracleRegionConverter(new ExpressionNavigator(), tnrc, tnc));
         navigatorList.add(new SelectNavigator(new ExpressionNavigator(), tnrc, tnc));
